@@ -125,7 +125,7 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, scale: 0 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ delay: 0.5 + index * 0.1, type: "spring" }}
+                transition={{ delay: 0.5 + index * 0.1, type: "spring" as const }}
                 whileHover={{ scale: 1.2, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
                 className="group relative"
