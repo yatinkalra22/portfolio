@@ -138,3 +138,207 @@ export const achievements = [
   "Vice President of International Club, Indiana Tech",
   "Campus environmental & cultural leader, Mumbai",
 ];
+
+export const hackathons = [
+  {
+    name: "Decision Lag",
+    hackathon: "Tableau Hackathon 2025",
+    date: "January 2026",
+    description:
+      "An automated execution system that detects high-risk decisions viewed repeatedly but not acted on, then triggers Slack alerts and creates Salesforce follow-up tasks — bridging the gap between insight and action.",
+    techStack: [
+      "TypeScript",
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "Salesforce",
+      "Slack API",
+      "Tableau Next",
+      "REST API",
+      "OAuth 2.0",
+    ],
+    highlights: [
+      "Tracks decision insights with view counts and risk/impact ratings",
+      "Automated Salesforce Flow triggers alerts when thresholds are exceeded",
+      "Slack notifications for high-risk, frequently-viewed decisions",
+      "Analytics dashboard showing decision lag patterns",
+    ],
+    links: {
+      demo: "https://decision-lag.vercel.app",
+      github: "https://github.com/yatinkalra22/decision-lag",
+      devpost: "https://devpost.com/software/decision-lag",
+    },
+    likes: 7,
+    comments: 2,
+  },
+  {
+    name: "SpaceSense AI",
+    hackathon: "Gemini 3 Hackathon",
+    date: "February 2026",
+    description:
+      "Analyzes photos and videos of your space across six design dimensions — lighting, clutter, color harmony, spatial layout, feng shui, and biophilic design — scoring 0–100 with AI-generated redesign suggestions.",
+    techStack: [
+      "Expo",
+      "React Native",
+      "TypeScript",
+      "Express.js",
+      "Google Gemini",
+      "Firebase",
+      "Redis",
+      "Google Cloud",
+      "Mixpanel",
+      "Sentry",
+    ],
+    highlights: [
+      "Six-dimension space analysis with letter grades and scores",
+      "AI-generated redesign showing how to fix identified issues",
+      "Video analysis via key frame extraction with per-frame fixes",
+      "Full observability with Mixpanel, Google Analytics, and Sentry",
+    ],
+    links: {
+      demo: "https://space-sense-ai-nine.vercel.app",
+      github: "https://github.com/yatinkalra22/space-sense-ai",
+      devpost: "https://devpost.com/software/space-sense-ai",
+    },
+    team: ["Ajinkya Palande"],
+    likes: 0,
+    comments: 0,
+  },
+  {
+    name: "CookLynx AI",
+    hackathon: "RevenueCat Shipyard: Creator Contest",
+    date: "February 2026",
+    description:
+      "Turn food photos and reels into ingredient lists, grocery plans, and cooking ideas instantly. Upload a photo or share a recipe URL to extract ingredients, get recipe recommendations, and generate shareable grocery lists.",
+    techStack: [
+      "Expo",
+      "React Native",
+      "Node.js",
+      "Express",
+      "Firebase",
+      "Google Gemini",
+      "Google Cloud",
+      "RevenueCat",
+    ],
+    highlights: [
+      "Photo-to-ingredient detection with AI-powered recognition",
+      "Three recipe recommendations per ingredient set",
+      "URL and reel ingredient extraction",
+      "Freemium model with RevenueCat subscription integration",
+    ],
+    links: {
+      demo: "https://cooklynx-ai-app.vercel.app",
+      github: "https://github.com/yatinkalra22/cooklynx-ai-app",
+      devpost: "https://devpost.com/software/cooklynx-ai",
+    },
+    likes: 0,
+    comments: 0,
+  },
+];
+
+export const professionalProjects = [
+  {
+    company: "Fluent Health",
+    projects: [
+      {
+        name: "Fluent Health Website",
+        description:
+          "Led the redesign and migration of the marketing website with full SEO optimization and CRM migration, improving organic traffic and lead conversion.",
+        techStack: ["Next.js", "React", "Node.js", "SEO", "CRM Integration"],
+        url: "https://fluentinhealth.com",
+      },
+      {
+        name: "Console App (Patient & Doctor Portal)",
+        description:
+          "Architected and built an internal application for patient management, doctor scheduling, and event coordination — a HIPAA-compliant platform powering day-to-day healthcare operations.",
+        techStack: ["React", "Node.js", "FHIR R4", "AWS", "PostgreSQL"],
+      },
+    ],
+  },
+  {
+    company: "Presidio",
+    projects: [
+      {
+        name: "Ulta Beauty",
+        description:
+          "Worked on the guest-facing application and built new features for 1,400+ stores. Led a major migration from Kronos scheduling system — a critical success. Added week and month view schedules and appointment features.",
+        techStack: ["React", "Node.js", "Java", "Microservices", "REST API"],
+        url: "https://www.ulta.com",
+      },
+      {
+        name: "Greenway Health",
+        description:
+          "Developed healthcare interoperability solutions using FHIR R4 standards, building ETL pipelines and integrating clinical data across systems.",
+        techStack: ["Node.js", "Java", "FHIR R4", "ETL", "REST API"],
+        url: "https://www.greenwayhealth.com",
+      },
+      {
+        name: "Alianza",
+        description:
+          "Built a branded meeting application for web, mobile, and desktop using the Amazon Chime SDK, enabling white-label video conferencing.",
+        techStack: ["React", "Amazon Chime SDK", "Node.js", "WebRTC"],
+        url: "https://www.alianza.com",
+      },
+      {
+        name: "Tenerity",
+        description:
+          "Added new features to the web application, collaborating directly with AWS professionals on cloud architecture and frontend performance.",
+        techStack: ["React", "AWS", "Node.js", "REST API"],
+        url: "https://www.tenerity.com",
+      },
+      {
+        name: "PGA Tour",
+        description:
+          "Built automated reporting pipelines to generate and deliver tournament and performance report files using Jasper Reports.",
+        techStack: ["Java", "Node.js", "Jasper Reports", "REST API"],
+        url: "https://www.pgatour.com",
+      },
+    ],
+  },
+  {
+    company: "Brewhackers Technologies",
+    projects: [
+      {
+        name: "Pondr",
+        description:
+          "A mobile-first, text-based social media platform. Handled the entire backend, cloud infrastructure, and contributed to mobile app features.",
+        techStack: [
+          "Flutter",
+          "Node.js",
+          "GraphQL",
+          "TypeScript",
+          "AWS",
+        ],
+      },
+      {
+        name: "Gist",
+        description:
+          "A mobile app that condenses long-form articles into screen-sized summaries with references to original sources, curated by an expert content writing team.",
+        techStack: [
+          "Flutter",
+          "Node.js",
+          "GraphQL",
+          "JavaScript",
+          "AWS",
+        ],
+      },
+    ],
+  },
+  {
+    company: "Headstrait Softwares",
+    projects: [
+      {
+        name: "HSDB Banking Application",
+        description:
+          "Developed a secure banking application with APIs, dashboards, and real-time transaction processing for financial clients.",
+        techStack: ["React", "Node.js", "PostgreSQL", "REST API", "Security"],
+      },
+      {
+        name: "CrickBuzz & StockIt",
+        description:
+          "Built a cricket live-score tracking platform and a real-time stock tracking application, delivering personalized experiences with integrated web and backend solutions.",
+        techStack: ["React", "Node.js", "WebSocket", "REST API", "Redis"],
+      },
+    ],
+  },
+];

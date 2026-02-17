@@ -2,7 +2,6 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { HiAcademicCap, HiCalendar, HiLocationMarker } from "react-icons/hi";
 import { education, certifications, achievements } from "@/lib/data";
 
 export default function Education() {
@@ -16,148 +15,98 @@ export default function Education() {
       className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* Left-aligned header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-16"
+          initial={{ opacity: 0, x: -20 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          className="mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Education & Achievements
+          <span className="text-sm font-mono text-gray-400 dark:text-gray-500 tracking-wider uppercase">
+            04 / Education
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mt-2">
+            Education & Credentials
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full" />
         </motion.div>
 
-        {/* Education Cards */}
-        <div className="mb-16">
-          <motion.h3
-            initial={{ opacity: 0, x: -20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            className="text-2xl font-bold text-gray-900 dark:text-white mb-8"
-          >
-            Education
-          </motion.h3>
+        {/* Two-column layout */}
+        <div className="grid lg:grid-cols-2 gap-12">
+          {/* Left: Education Timeline */}
+          <div>
+            <div className="relative pl-8 border-l-2 border-gray-200 dark:border-gray-700 space-y-10">
+              {education.map((edu, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: index * 0.15 }}
+                  className="relative"
+                >
+                  {/* Timeline dot */}
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 bg-blue-600 rounded-full border-2 border-white dark:border-gray-800" />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {education.map((edu, index) => (
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                    {edu.degree}
+                  </h3>
+                  <p className="text-blue-600 dark:text-blue-400 font-medium">
+                    {edu.institution}
+                  </p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                    {edu.period} &middot; {edu.location}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: Certifications + Achievements */}
+          <div className="space-y-8">
+            {/* AWS Certification - Warm gradient card */}
+            {certifications.map((cert, i) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.05, y: -10 }}
-                className="glass p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
+                key={i}
+                initial={{ opacity: 0, x: 30 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.2 }}
+                className="p-6 rounded-xl bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border border-amber-200 dark:border-amber-800"
               >
-                <div className="flex items-start gap-4 mb-4">
-                  <motion.div
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.5 }}
-                    className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center"
-                  >
-                    <HiAcademicCap className="w-6 h-6 text-white" />
-                  </motion.div>
-                  <div className="flex-1">
-                    <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-                      {edu.degree}
-                    </h4>
-                    <p className="text-blue-600 dark:text-blue-400 font-semibold mb-2">
-                      {edu.institution}
-                    </p>
-                    <div className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
-                      <div className="flex items-center gap-2">
-                        <HiCalendar className="w-4 h-4" />
-                        <span>{edu.period}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <HiLocationMarker className="w-4 h-4" />
-                        <span>{edu.location}</span>
-                      </div>
-                    </div>
-                  </div>
+                <div className="text-sm font-medium text-amber-600 dark:text-amber-400 mb-1">
+                  Certification
                 </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
+                  {cert.name}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  {cert.issuer}
+                </p>
+                <p className="text-sm text-amber-600 dark:text-amber-400 mt-2">
+                  {cert.period}
+                </p>
               </motion.div>
             ))}
+
+            {/* Achievements */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 0.35 }}
+            >
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                Leadership
+              </h3>
+              <ul className="space-y-3">
+                {achievements.map((achievement, index) => (
+                  <li
+                    key={index}
+                    className="flex items-start gap-3 text-gray-700 dark:text-gray-300"
+                  >
+                    <span className="flex-shrink-0 w-1.5 h-1.5 bg-violet-500 rounded-full mt-2" />
+                    <span>{achievement}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
           </div>
-        </div>
-
-        {/* Certifications & Achievements Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Certifications */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.4 }}
-          >
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-              Certifications
-            </h3>
-            <div className="space-y-4">
-              {certifications.map((cert, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ scale: 1.02, x: 10 }}
-                  className="glass p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-yellow-600 rounded-lg flex items-center justify-center">
-                      <span className="text-2xl">🏆</span>
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-1">
-                        {cert.name}
-                      </h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {cert.issuer}
-                      </p>
-                      <p className="text-xs text-blue-600 dark:text-blue-400 mt-1">
-                        {cert.period}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Achievements */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.5 }}
-          >
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-              Leadership & Achievements
-            </h3>
-            <div className="space-y-4">
-              {achievements.map((achievement, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.6 + index * 0.1 }}
-                  whileHover={{ scale: 1.02, x: 10 }}
-                  className="glass p-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
-                >
-                  <div className="flex items-start gap-3">
-                    <motion.div
-                      animate={{ rotate: [0, 10, -10, 0] }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        delay: index * 0.2,
-                      }}
-                      className="flex-shrink-0 text-2xl"
-                    >
-                      ⭐
-                    </motion.div>
-                    <p className="text-gray-700 dark:text-gray-300 font-medium">
-                      {achievement}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>

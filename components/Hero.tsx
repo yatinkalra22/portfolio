@@ -1,19 +1,31 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { HiMail, HiLocationMarker, HiDownload } from "react-icons/hi";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { HiMail } from "react-icons/hi";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { personalInfo } from "@/lib/data";
 import ParticleBackground from "./ParticleBackground";
 
 export default function Hero() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const nameY = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const taglineY = useTransform(scrollYProgress, [0, 1], [0, -40]);
+  const ctaY = useTransform(scrollYProgress, [0, 1], [0, -20]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.3,
+        delayChildren: 0.2,
       },
     },
   };
@@ -33,44 +45,45 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
+      ref={ref}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden gradient-mesh"
     >
       <ParticleBackground />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <motion.div
+        style={{ opacity }}
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
+      >
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           className="text-center"
         >
-          {/* Greeting */}
-          <motion.div variants={itemVariants} className="mb-6">
-            <span className="inline-block px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-medium">
-              Welcome to my portfolio
-            </span>
-          </motion.div>
-
-          {/* Name with gradient */}
+          {/* Name with parallax */}
           <motion.h1
             variants={itemVariants}
+            style={{ y: nameY }}
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4"
           >
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient">
-              Yatin Kalra
-            </span>
+            <span className="text-gray-900 dark:text-white">Yatin Kalra</span>
           </motion.h1>
 
-          {/* Title with typing effect */}
-          <motion.div variants={itemVariants} className="mb-8">
+          {/* Title */}
+          <motion.div
+            variants={itemVariants}
+            style={{ y: taglineY }}
+            className="mb-8"
+          >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-700 dark:text-gray-300">
-              <TypewriterText text="Senior Full Stack Engineer" />
+              Senior Full Stack Engineer
             </h2>
           </motion.div>
 
           {/* Tagline */}
           <motion.p
             variants={itemVariants}
+            style={{ y: taglineY }}
             className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-12"
           >
             Crafting scalable web applications with{" "}
@@ -83,72 +96,66 @@ export default function Hero() {
           {/* CTA Buttons */}
           <motion.div
             variants={itemVariants}
+            style={{ y: ctaY }}
             className="flex flex-wrap items-center justify-center gap-4 mb-12"
           >
             <a
               href="#contact"
-              className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-medium hover:shadow-xl hover:scale-105 transition-all duration-300"
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .querySelector("#contact")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl"
             >
-              <span className="flex items-center gap-2">
-                Get In Touch
-                <motion.span
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ repeat: Infinity, duration: 1.5 }}
-                >
-                  →
-                </motion.span>
-              </span>
+              Get In Touch
             </a>
 
             <a
-              href="#experience"
-              className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full font-medium border-2 border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-lg hover:scale-105 transition-all duration-300"
+              href="#work"
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .querySelector("#work")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-full font-medium border border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 transition-colors shadow-md hover:shadow-lg"
             >
               View My Work
             </a>
           </motion.div>
 
-          {/* Contact Info */}
+          {/* Social Row */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap items-center justify-center gap-6 text-gray-600 dark:text-gray-400"
+            className="flex items-center justify-center gap-5 text-gray-500 dark:text-gray-400"
           >
-            <motion.a
+            <a
               href={`mailto:${personalInfo.email}`}
-              whileHover={{ scale: 1.1, color: "#3b82f6" }}
-              className="flex items-center gap-2 hover:text-blue-600 transition-colors"
+              className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              aria-label="Email"
             >
-              <HiMail className="w-5 h-5" />
-              <span className="hidden sm:inline">{personalInfo.email}</span>
-            </motion.a>
-
-            <motion.span
-              whileHover={{ scale: 1.1 }}
-              className="flex items-center gap-2"
-            >
-              <HiLocationMarker className="w-5 h-5" />
-              <span>{personalInfo.location}</span>
-            </motion.span>
-
-            <motion.a
+              <HiMail className="w-6 h-6" />
+            </a>
+            <a
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.2, color: "#0077b5" }}
-              className="transition-colors"
+              className="hover:text-[#0077b5] transition-colors"
+              aria-label="LinkedIn"
             >
-              <FaLinkedin className="w-6 h-6" />
-            </motion.a>
-
-            <motion.a
+              <FaLinkedin className="w-5 h-5" />
+            </a>
+            <a
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.2, color: "#333" }}
-              className="transition-colors dark:hover:text-white"
+              className="hover:text-gray-900 dark:hover:text-white transition-colors"
+              aria-label="GitHub"
             >
-              <FaGithub className="w-6 h-6" />
-            </motion.a>
+              <FaGithub className="w-5 h-5" />
+            </a>
           </motion.div>
 
           {/* Scroll Indicator */}
@@ -167,29 +174,7 @@ export default function Hero() {
             </div>
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
-  );
-}
-
-// Typewriter effect component
-function TypewriterText({ text }: { text: string }) {
-  return (
-    <motion.span
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      {text.split("").map((char, index) => (
-        <motion.span
-          key={index}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: index * 0.05 }}
-        >
-          {char}
-        </motion.span>
-      ))}
-    </motion.span>
   );
 }
