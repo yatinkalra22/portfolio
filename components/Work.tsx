@@ -74,6 +74,29 @@ export default function Work() {
           ))}
         </motion.div>
 
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.15 }}
+          className="mb-8"
+        >
+          {activeTab === "Professional" ? (
+            <button
+              onClick={() => setActiveTab("Hackathons")}
+              className="text-sm font-medium text-violet-600 dark:text-violet-400 hover:underline"
+            >
+              View latest hackathon projects →
+            </button>
+          ) : (
+            <button
+              onClick={() => setActiveTab("Professional")}
+              className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:underline"
+            >
+              ← Back to professional projects
+            </button>
+          )}
+        </motion.div>
+
         {/* Tab Content */}
         <AnimatePresence mode="wait">
           {activeTab === "Professional" ? (
@@ -148,7 +171,25 @@ export default function Work() {
               {hackathons.map((hack) => (
                 <div
                   key={hack.name}
-                  className="rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700"
+                  className="rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 transition-colors hover:border-violet-400 dark:hover:border-violet-500 cursor-pointer"
+                  role={hack.links.devpost ? "link" : undefined}
+                  tabIndex={hack.links.devpost ? 0 : undefined}
+                  onClick={() => {
+                    if (hack.links.devpost) {
+                      window.open(hack.links.devpost, "_blank", "noopener,noreferrer");
+                    }
+                  }}
+                  onKeyDown={(e) => {
+                    if (!hack.links.devpost) return;
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      window.open(
+                        hack.links.devpost,
+                        "_blank",
+                        "noopener,noreferrer"
+                      );
+                    }
+                  }}
                 >
                   {/* Gradient Header */}
                   <div className="bg-gradient-to-r from-violet-600 to-blue-600 p-4">
@@ -190,6 +231,7 @@ export default function Work() {
                           href={hack.links.demo}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
                           className="text-blue-600 dark:text-blue-400 hover:underline font-medium"
                         >
                           Demo
@@ -200,6 +242,7 @@ export default function Work() {
                           href={hack.links.github}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
                           className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                           aria-label="GitHub"
                         >
@@ -211,6 +254,7 @@ export default function Work() {
                           href={hack.links.devpost}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
                           className="text-blue-600 dark:text-blue-400 hover:underline text-xs"
                         >
                           Devpost

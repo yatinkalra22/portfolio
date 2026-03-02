@@ -141,40 +141,108 @@ export const achievements = [
 
 export const hackathons = [
   {
-    name: "Decision Lag",
-    hackathon: "Tableau Hackathon 2025",
-    date: "January 2026",
+    name: "HealthSync App - Multi-Agent Prior Authorization Automation",
+    hackathon: "Elasticsearch Agent Builder Hackathon",
+    date: "Feb 27, 2026",
+    publishedAt: "2026-02-27T07:20:30-05:00",
     description:
-      "An automated execution system that detects high-risk decisions viewed repeatedly but not acted on, then triggers Slack alerts and creates Salesforce follow-up tasks — bridging the gap between insight and action.",
+      "A multi-agent prior authorization platform that coordinates five AI agents across clinical and policy data sources to automate approvals, surface confidence, and keep full compliance traceability.",
     techStack: [
       "TypeScript",
       "Next.js",
-      "React",
+      "Elasticsearch",
+      "Gemini 2.0 Flash",
       "Tailwind CSS",
-      "Salesforce",
-      "Slack API",
-      "Tableau Next",
-      "REST API",
-      "OAuth 2.0",
+      "FHIR R4",
+      "HAPI FHIR",
+      "SWR",
+      "Server-Sent Events",
+      "Docker",
+      "Vercel",
     ],
     highlights: [
-      "Tracks decision insights with view counts and risk/impact ratings",
-      "Automated Salesforce Flow triggers alerts when thresholds are exceeded",
-      "Slack notifications for high-risk, frequently-viewed decisions",
-      "Analytics dashboard showing decision lag patterns",
+      "Five-agent orchestration pipeline for end-to-end prior authorization",
+      "Hybrid policy matching and ES|QL-based clinical data aggregation across 8 indices",
+      "HIPAA-style audit log with full agent/action/query traceability",
+      "Explainable workflow with confidence-based escalation and transparent decisioning",
     ],
     links: {
-      demo: "https://decision-lag.vercel.app",
-      github: "https://github.com/yatinkalra22/decision-lag",
-      devpost: "https://devpost.com/software/decision-lag",
+      demo: "https://health-sync-app-theta.vercel.app",
+      github: "https://github.com/yatinkalra22/health-sync-app",
+      devpost:
+        "https://devpost.com/software/healthsync-app-multi-agent-prior-authorization-automation",
     },
-    likes: 7,
-    comments: 2,
+    likes: 2,
+    comments: 0,
+  },
+  {
+    name: "Spatial Mentor AI - Precision MR Training",
+    hackathon: "DevStudio 2026 by Logitech",
+    date: "Feb 20, 2026",
+    publishedAt: "2026-02-20T23:03:20-05:00",
+    description:
+      "A mixed-reality precision training prototype for Meta Quest that uses MX Ink stylus pressure input to simulate fine-motor tasks and deliver AI-assisted performance feedback.",
+    techStack: [
+      "Unity",
+      "C#",
+      "Meta Quest",
+      "OpenXR",
+      "Meta XR SDK",
+      "Mixed Reality",
+      "Gemini 3",
+      "VR",
+    ],
+    highlights: [
+      "Pressure-sensitive stylus input mapped to task-specific precision metrics",
+      "Real-time validation and feedback loop for fine-motor training",
+      "Built as a modular training framework for additional scenarios",
+      "Explores MX Ink beyond creative workflows into technical instruction use cases",
+    ],
+    links: {
+      demo: "https://docs.google.com/document/d/1G0683976K-N_UvZPlTx7WubAdlMQKjX3X8Slo0mwscY/edit?usp=sharing",
+      github: "",
+      devpost:
+        "https://devpost.com/software/spatial-mentor-ai-precision-mr-training",
+    },
+    likes: 0,
+    comments: 0,
+  },
+  {
+    name: "CookLynx AI",
+    hackathon: "RevenueCat Shipyard: Creator Contest",
+    date: "Feb 12, 2026",
+    publishedAt: "2026-02-12T22:54:19-05:00",
+    description:
+      "Turn food photos and reels into ingredient lists, grocery plans, and cooking ideas instantly. Upload a photo or share a recipe URL to extract ingredients, get recipe recommendations, and generate shareable grocery lists.",
+    techStack: [
+      "Expo",
+      "React Native",
+      "Node.js",
+      "Express",
+      "Firebase",
+      "Google Gemini",
+      "Google Cloud",
+      "RevenueCat",
+    ],
+    highlights: [
+      "Photo-to-ingredient detection with AI-powered recognition",
+      "Three recipe recommendations per ingredient set",
+      "URL and reel ingredient extraction",
+      "Freemium model with RevenueCat subscription integration",
+    ],
+    links: {
+      demo: "https://cooklynx-ai-app.vercel.app",
+      github: "https://github.com/yatinkalra22/cooklynx-ai-app",
+      devpost: "https://devpost.com/software/cooklynx-ai",
+    },
+    likes: 0,
+    comments: 0,
   },
   {
     name: "SpaceSense AI",
     hackathon: "Gemini 3 Hackathon",
-    date: "February 2026",
+    date: "Feb 9, 2026",
+    publishedAt: "2026-02-09T09:55:23-05:00",
     description:
       "Analyzes photos and videos of your space across six design dimensions — lighting, clutter, color harmony, spatial layout, feng shui, and biophilic design — scoring 0–100 with AI-generated redesign suggestions.",
     techStack: [
@@ -205,36 +273,50 @@ export const hackathons = [
     comments: 0,
   },
   {
-    name: "CookLynx AI",
-    hackathon: "RevenueCat Shipyard: Creator Contest",
-    date: "February 2026",
+    name: "Decision Lag",
+    hackathon: "Tableau Hackathon 2025",
+    date: "Jan 12, 2026",
+    publishedAt: "2026-01-12T14:33:13-05:00",
     description:
-      "Turn food photos and reels into ingredient lists, grocery plans, and cooking ideas instantly. Upload a photo or share a recipe URL to extract ingredients, get recipe recommendations, and generate shareable grocery lists.",
+      "An automated execution system that detects high-risk decisions viewed repeatedly but not acted on, then triggers Slack alerts and creates Salesforce follow-up tasks — bridging the gap between insight and action.",
     techStack: [
-      "Expo",
-      "React Native",
-      "Node.js",
-      "Express",
-      "Firebase",
-      "Google Gemini",
-      "Google Cloud",
-      "RevenueCat",
+      "TypeScript",
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "Salesforce",
+      "Slack API",
+      "Tableau Next",
+      "REST API",
+      "OAuth 2.0",
     ],
     highlights: [
-      "Photo-to-ingredient detection with AI-powered recognition",
-      "Three recipe recommendations per ingredient set",
-      "URL and reel ingredient extraction",
-      "Freemium model with RevenueCat subscription integration",
+      "Tracks decision insights with view counts and risk/impact ratings",
+      "Automated Salesforce Flow triggers alerts when thresholds are exceeded",
+      "Slack notifications for high-risk, frequently-viewed decisions",
+      "Analytics dashboard showing decision lag patterns",
     ],
     links: {
-      demo: "https://cooklynx-ai-app.vercel.app",
-      github: "https://github.com/yatinkalra22/cooklynx-ai-app",
-      devpost: "https://devpost.com/software/cooklynx-ai",
+      demo: "https://decision-lag.vercel.app",
+      github: "https://github.com/yatinkalra22/decision-lag",
+      devpost: "https://devpost.com/software/decision-lag",
     },
-    likes: 0,
-    comments: 0,
+    likes: 7,
+    comments: 2,
   },
-];
+].sort(
+  (a, b) => {
+    const getTimestamp = (value?: string) => {
+      if (!value) return 0;
+      const timestamp = new Date(value).getTime();
+      return Number.isNaN(timestamp) ? 0 : timestamp;
+    };
+
+    const bTime = getTimestamp(b.publishedAt) || getTimestamp(b.date);
+    const aTime = getTimestamp(a.publishedAt) || getTimestamp(a.date);
+    return bTime - aTime;
+  }
+);
 
 export const professionalProjects = [
   {
