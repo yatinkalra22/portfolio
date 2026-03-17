@@ -26,12 +26,10 @@ export default function Navigation() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // IntersectionObserver for active section highlighting
   useEffect(() => {
     const sectionIds = navItems.map((item) => item.href.replace("#", ""));
     const observers: IntersectionObserver[] = [];
@@ -60,18 +58,11 @@ export default function Navigation() {
     (href: string) => {
       if (isOpen) {
         setIsOpen(false);
-        // Delay scroll to let mobile menu close animation finish
         setTimeout(() => {
-          const element = document.querySelector(href);
-          if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
-          }
+          document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
         }, 300);
       } else {
-        const element = document.querySelector(href);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
+        document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
       }
     },
     [isOpen]
@@ -81,9 +72,9 @@ export default function Navigation() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg"
+          ? "bg-white/70 dark:bg-[#0d0c1e]/70 backdrop-blur-2xl shadow-lg shadow-black/5 dark:shadow-black/20 border-b border-gray-200/50 dark:border-gray-800/50"
           : "bg-transparent"
       }`}
     >
@@ -94,7 +85,6 @@ export default function Navigation() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="flex-shrink-0"
           >
             <a
               href="#home"
@@ -102,14 +92,14 @@ export default function Navigation() {
                 e.preventDefault();
                 handleNavClick("#home");
               }}
-              className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent hover:scale-105 transition-transform"
+              className="text-2xl font-bold gradient-text hover:scale-105 transition-transform"
             >
               YK
             </a>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center gap-1">
             {navItems.map((item, index) => {
               const isActive =
                 activeSection === item.href.replace("#", "");
@@ -124,17 +114,17 @@ export default function Navigation() {
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * index }}
-                  className={`relative px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                  className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                     isActive
-                      ? "text-blue-600 dark:text-blue-400"
-                      : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800"
+                      ? "text-accent-700 dark:text-accent-300"
+                      : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                   }`}
                 >
                   {item.name}
                   {isActive && (
                     <motion.div
                       layoutId="activeNav"
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-blue-600 dark:bg-blue-400 rounded-full"
+                      className="absolute inset-0 bg-accent-50 dark:bg-accent-600/10 rounded-full -z-10"
                       transition={{
                         type: "spring",
                         stiffness: 380,
@@ -152,7 +142,7 @@ export default function Navigation() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.6 }}
               onClick={toggleTheme}
-              className="ml-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+              className="ml-3 p-2.5 rounded-full bg-gray-100 dark:bg-[#1a1840] hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
               aria-label="Toggle theme"
             >
               {mounted && (
@@ -165,7 +155,7 @@ export default function Navigation() {
                       exit={{ rotate: 90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <HiSun className="w-5 h-5 text-yellow-500" />
+                      <HiSun className="w-4 h-4 text-amber-500" />
                     </motion.div>
                   ) : (
                     <motion.div
@@ -175,7 +165,7 @@ export default function Navigation() {
                       exit={{ rotate: -90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <HiMoon className="w-5 h-5 text-gray-700" />
+                      <HiMoon className="w-4 h-4 text-accent-600" />
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -183,19 +173,19 @@ export default function Navigation() {
             </motion.button>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-2">
+          {/* Mobile */}
+          <div className="md:hidden flex items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700"
+              className="p-2 rounded-full bg-gray-100 dark:bg-[#1a1840]"
               aria-label="Toggle theme"
             >
               {mounted && (
                 <>
                   {theme === "dark" ? (
-                    <HiSun className="w-5 h-5 text-yellow-500" />
+                    <HiSun className="w-4 h-4 text-amber-500" />
                   ) : (
-                    <HiMoon className="w-5 h-5 text-gray-700" />
+                    <HiMoon className="w-4 h-4 text-accent-600" />
                   )}
                 </>
               )}
@@ -203,13 +193,13 @@ export default function Navigation() {
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+              className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
               aria-label="Toggle menu"
             >
               {isOpen ? (
-                <HiX className="h-6 w-6" />
+                <HiX className="h-5 w-5" />
               ) : (
-                <HiMenu className="h-6 w-6" />
+                <HiMenu className="h-5 w-5" />
               )}
             </button>
           </div>
@@ -223,9 +213,9 @@ export default function Navigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white dark:bg-gray-900 shadow-lg"
+            className="md:hidden bg-white/90 dark:bg-[#0d0c1e]/90 backdrop-blur-2xl border-b border-gray-200/50 dark:border-gray-800/50"
           >
-            <div className="px-2 pt-2 pb-3 space-y-1">
+            <div className="px-4 pt-2 pb-4 space-y-1">
               {navItems.map((item, index) => {
                 const isActive =
                   activeSection === item.href.replace("#", "");
@@ -240,10 +230,10 @@ export default function Navigation() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.05 * index }}
-                    className={`block px-3 py-2 rounded-md text-base font-medium ${
+                    className={`block px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
                       isActive
-                        ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20"
-                        : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800"
+                        ? "text-accent-700 dark:text-accent-300 bg-accent-50 dark:bg-accent-600/10"
+                        : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                     }`}
                   >
                     {item.name}

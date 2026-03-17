@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { education, certifications, achievements } from "@/lib/data";
+import { HiAcademicCap, HiBadgeCheck, HiStar } from "react-icons/hi";
 
 export default function Education() {
   const ref = useRef(null);
@@ -12,16 +13,16 @@ export default function Education() {
     <section
       id="education"
       ref={ref}
-      className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors"
+      className="py-24 bg-white dark:bg-[#110f24] transition-colors"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Left-aligned header */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
-          className="mb-12"
+          className="mb-16"
         >
-          <span className="text-sm font-mono text-gray-400 dark:text-gray-500 tracking-wider uppercase">
+          <span className="text-sm font-mono text-accent-600 dark:text-accent-300 tracking-wider uppercase">
             04 / Education
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mt-2">
@@ -29,11 +30,16 @@ export default function Education() {
           </h2>
         </motion.div>
 
-        {/* Two-column layout */}
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Left: Education Timeline */}
+          {/* Education Timeline */}
           <div>
-            <div className="relative pl-8 border-l-2 border-gray-200 dark:border-gray-700 space-y-10">
+            <div className="flex items-center gap-2 mb-8">
+              <HiAcademicCap className="w-5 h-5 text-accent-600 dark:text-accent-300" />
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                Education
+              </h3>
+            </div>
+            <div className="relative pl-8 border-l-2 border-gray-200 dark:border-gray-800 space-y-10">
               {education.map((edu, index) => (
                 <motion.div
                   key={index}
@@ -42,13 +48,12 @@ export default function Education() {
                   transition={{ delay: index * 0.15 }}
                   className="relative"
                 >
-                  {/* Timeline dot */}
-                  <div className="absolute -left-[25px] top-1 w-3 h-3 bg-blue-600 rounded-full border-2 border-white dark:border-gray-800" />
+                  <div className="absolute -left-[25px] top-1 w-3 h-3 bg-accent-600 rounded-full border-2 border-white dark:border-[#110f24] ring-4 ring-accent-600/10" />
 
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white">
                     {edu.degree}
                   </h3>
-                  <p className="text-blue-600 dark:text-blue-400 font-medium">
+                  <p className="text-accent-600 dark:text-accent-300 font-medium">
                     {edu.institution}
                   </p>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
@@ -59,19 +64,21 @@ export default function Education() {
             </div>
           </div>
 
-          {/* Right: Certifications + Achievements */}
+          {/* Right Column */}
           <div className="space-y-8">
-            {/* AWS Certification - Warm gradient card */}
             {certifications.map((cert, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, x: 30 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: 0.2 }}
-                className="p-6 rounded-xl bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border border-amber-200 dark:border-amber-800"
+                className="p-6 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30 border border-amber-200/60 dark:border-amber-800/40"
               >
-                <div className="text-sm font-medium text-amber-600 dark:text-amber-400 mb-1">
-                  Certification
+                <div className="flex items-center gap-2 mb-3">
+                  <HiBadgeCheck className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                  <span className="text-xs font-mono text-amber-600 dark:text-amber-400 uppercase tracking-wider">
+                    Certification
+                  </span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
                   {cert.name}
@@ -79,28 +86,31 @@ export default function Education() {
                 <p className="text-gray-600 dark:text-gray-400">
                   {cert.issuer}
                 </p>
-                <p className="text-sm text-amber-600 dark:text-amber-400 mt-2">
+                <p className="text-sm text-amber-600 dark:text-amber-400 mt-3 font-medium">
                   {cert.period}
                 </p>
               </motion.div>
             ))}
 
-            {/* Achievements */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: 0.35 }}
+              className="p-6 rounded-2xl bg-gray-50 dark:bg-[#1a1840]/50 border border-gray-200/80 dark:border-gray-800"
             >
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                Leadership
-              </h3>
-              <ul className="space-y-3">
+              <div className="flex items-center gap-2 mb-5">
+                <HiStar className="w-5 h-5 text-brand-600 dark:text-brand-400" />
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                  Leadership
+                </h3>
+              </div>
+              <ul className="space-y-4">
                 {achievements.map((achievement, index) => (
                   <li
                     key={index}
-                    className="flex items-start gap-3 text-gray-700 dark:text-gray-300"
+                    className="flex items-start gap-3 text-gray-600 dark:text-gray-300"
                   >
-                    <span className="flex-shrink-0 w-1.5 h-1.5 bg-violet-500 rounded-full mt-2" />
+                    <span className="flex-shrink-0 w-1.5 h-1.5 bg-brand-600 dark:bg-brand-400 rounded-full mt-2" />
                     <span>{achievement}</span>
                   </li>
                 ))}

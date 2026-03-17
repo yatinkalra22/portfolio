@@ -28,8 +28,8 @@ function ParticleBackground() {
     resize();
 
     const isMobile = window.innerWidth < 768;
-    const particleCount = isMobile ? 30 : 60;
-    const connectionDistance = 150;
+    const particleCount = isMobile ? 25 : 50;
+    const connectionDistance = 140;
 
     const particles: {
       x: number;
@@ -43,9 +43,9 @@ function ParticleBackground() {
       particles.push({
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        size: Math.random() * 2 + 1,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        size: Math.random() * 1.5 + 0.5,
       });
     }
 
@@ -63,7 +63,8 @@ function ParticleBackground() {
         if (p.x < 0 || p.x > w) p.vx *= -1;
         if (p.y < 0 || p.y > h) p.vy *= -1;
 
-        ctx.fillStyle = "rgba(59, 130, 246, 0.5)";
+        // Use accent color (#3D3B8E)
+        ctx.fillStyle = "rgba(61, 59, 142, 0.4)";
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
@@ -76,9 +77,9 @@ function ParticleBackground() {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < connectionDistance) {
-            const opacity = (1 - distance / connectionDistance) * 0.3;
-            ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`;
-            ctx.lineWidth = 1;
+            const opacity = (1 - distance / connectionDistance) * 0.2;
+            ctx.strokeStyle = `rgba(61, 59, 142, ${opacity})`;
+            ctx.lineWidth = 0.5;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -103,7 +104,7 @@ function ParticleBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 pointer-events-none opacity-30 dark:opacity-20"
+      className="absolute inset-0 pointer-events-none opacity-40 dark:opacity-25"
     />
   );
 }

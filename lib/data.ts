@@ -5,11 +5,12 @@ export const personalInfo = {
   email: "yatin.kalra940@gmail.com",
   linkedin: "https://www.linkedin.com/in/yatin-rajkumar-kalra",
   github: "https://github.com/yatinkalra22",
+  devpost: "https://devpost.com/yatin-kalra940",
   location: "Indiana, USA",
 };
 
 export const professionalSummary =
-  "Senior Full Stack Engineer with 8+ years of experience designing, developing, and deploying scalable web applications and cloud-native platforms in fintech, healthcare, and SaaS. Expertise in React, Node.js, AWS, and modern JS stacks. Proven record leading teams, driving technical innovation, and delivering products end-to-end.";
+  "Senior Full Stack Engineer with 8+ years of experience architecting and scaling cloud-native, distributed systems across fintech, healthcare, and SaaS domains. Specialized in React, Node.js, AWS, and microservices architecture, delivering high-availability platforms capable of handling 10x production traffic growth. Strong background in API design (REST/GraphQL), performance optimization, secure system architecture, and CI/CD automation.";
 
 export const education = [
   {
@@ -39,10 +40,9 @@ export const experience = [
     location: "Mumbai, India",
     period: "April 2024 – August 2025",
     highlights: [
-      "Architected and led the development of secure, scalable cloud-native platforms using Node.js, Java, and AWS, focusing on reliability and compliance (FHIR).",
-      "Established CI/CD pipelines and automated deployments with Docker and Jenkins.",
-      "Improved system performance and uptime, scaling platforms to handle 10x traffic increases.",
-      "Delivered features end-to-end, from architecture and API design to deployment and code reviews.",
+      "Architected and led development of HIPAA-aligned, FHIR-compliant cloud-native healthcare platforms using Node.js, Java, and AWS.",
+      "Designed and implemented microservices architecture supporting 10x traffic growth while maintaining high availability and system reliability.",
+      "Led system design, API architecture, code reviews, and CI/CD automation to improve release stability and deployment efficiency.",
     ],
   },
   {
@@ -51,19 +51,19 @@ export const experience = [
     location: "Chennai, India (Remote)",
     period: "November 2021 - April 2024",
     highlights: [
-      "Designed and maintained product solutions used by 1400+ retail stores, integrating frontend UIs and backend APIs.",
-      "Migrated monolithic services to microservices architecture, integrating APIs and databases.",
-      "Designed and optimized backend components for high availability and speed.",
+      "Designed and maintained enterprise product solutions used across 1,400+ retail stores.",
+      "Migrated monolithic systems to microservices architecture, improving maintainability and deployment efficiency.",
+      "Built cross-platform applications (web, mobile, desktop) using React, React Native, and ElectronJS.",
     ],
   },
   {
     title: "Full Stack Developer",
     company: "Brewhackers Technologies",
-    location: "Hyderabad, India",
+    location: "Hyderabad, India (Remote)",
     period: "May 2020 - October 2021",
     highlights: [
-      "Built full stack analytics and event-driven platforms for social and banking data.",
-      "Used React for dynamic interfaces and Node.js for high-availability backend services.",
+      "Built full-stack analytics and event-driven platforms processing high-volume social and financial data.",
+      "Developed dynamic React interfaces and high-availability Node.js backend services.",
     ],
   },
   {
@@ -72,8 +72,8 @@ export const experience = [
     location: "Mumbai, India",
     period: "June 2019 - May 2020",
     highlights: [
-      "Developed secure APIs, dashboards, and content delivery systems for healthcare/banking clients.",
-      "Enabled real-time, personalized user experiences through integrated web and backend solutions.",
+      "Developed secure APIs, dashboards, and content delivery systems for healthcare and banking clients.",
+      "Delivered scalable backend services supporting real-time personalized user experiences.",
     ],
   },
   {
@@ -82,45 +82,47 @@ export const experience = [
     location: "Thane, India",
     period: "October 2014 - November 2018",
     highlights: [
-      "Automated analytics and reporting, increasing uptime and KPI accuracy by 25%.",
-      "Enhanced backend monitoring and system reliability for enterprise messaging systems.",
+      "Automated analytics and reporting systems, increasing uptime and KPI accuracy by 25%.",
+      "Enhanced backend monitoring and reliability for enterprise messaging systems.",
     ],
   },
 ];
 
 export const skills = {
   Frontend: [
-    "JavaScript",
+    "JavaScript (ES6+)",
     "TypeScript",
     "React",
+    "React Native",
     "Next.js",
+    "ElectronJS",
+    "Redux",
     "HTML5",
     "CSS3",
-    "Redux",
-    "Tailwind CSS",
   ],
   Backend: [
     "Node.js",
-    "GraphQL",
-    "Java",
     "Express.js",
-    "REST API",
-    "API Design",
+    "Java",
+    "REST APIs",
+    "GraphQL",
+    "Microservices",
   ],
   "Cloud & DevOps": [
-    "AWS",
+    "AWS (EC2, S3, Lambda)",
     "Docker",
-    "Jenkins",
-    "Microservices",
     "CI/CD Pipelines",
+    "Jenkins",
+    "Serverless",
   ],
   Database: ["PostgreSQL", "MySQL", "MongoDB", "Redis"],
   Core: [
     "Distributed Systems",
+    "System Design",
+    "Scalability",
     "Performance Optimization",
-    "Security",
-    "Test Automation",
-    "Scrum/Agile",
+    "Secure Architecture",
+    "Agile/Scrum",
   ],
 };
 
@@ -140,6 +142,40 @@ export const achievements = [
 ];
 
 export const hackathons = [
+  {
+    name: "AutoQA - AI Browser Testing Agent",
+    hackathon: "Gemini Live Agent Challenge",
+    date: "Mar 16, 2026",
+    publishedAt: "2026-03-16T00:00:00-05:00",
+    description:
+      "An AI-powered browser testing platform that autonomously navigates websites, executes test scenarios from plain English prompts, and generates detailed pass/fail reports — no traditional test scripts needed.",
+    techStack: [
+      "TypeScript",
+      "Node.js",
+      "Fastify",
+      "Playwright",
+      "Gemini 2.5 Flash",
+      "PostgreSQL",
+      "Drizzle ORM",
+      "Google Cloud Run",
+      "Firebase",
+      "WebSocket",
+      "Docker",
+    ],
+    highlights: [
+      "Vision-based autonomous browser navigation and test execution",
+      "WCAG 2.1 accessibility audits and visual regression detection",
+      "Playwright TypeScript code export and shareable HTML reports",
+      "Real-time WebSocket updates with Slack/webhook integration",
+    ],
+    links: {
+      demo: "https://autoqa-web.vercel.app",
+      github: "https://github.com/yatinkalra22/autoqa-api",
+      devpost: "https://devpost.com/software/a-g5mbop",
+    },
+    likes: 0,
+    comments: 0,
+  },
   {
     name: "HealthSync App - Multi-Agent Prior Authorization Automation",
     hackathon: "Elasticsearch Agent Builder Hackathon",
@@ -304,19 +340,17 @@ export const hackathons = [
     likes: 7,
     comments: 2,
   },
-].sort(
-  (a, b) => {
-    const getTimestamp = (value?: string) => {
-      if (!value) return 0;
-      const timestamp = new Date(value).getTime();
-      return Number.isNaN(timestamp) ? 0 : timestamp;
-    };
+].sort((a, b) => {
+  const getTimestamp = (value?: string) => {
+    if (!value) return 0;
+    const timestamp = new Date(value).getTime();
+    return Number.isNaN(timestamp) ? 0 : timestamp;
+  };
 
-    const bTime = getTimestamp(b.publishedAt) || getTimestamp(b.date);
-    const aTime = getTimestamp(a.publishedAt) || getTimestamp(a.date);
-    return bTime - aTime;
-  }
-);
+  const bTime = getTimestamp(b.publishedAt) || getTimestamp(b.date);
+  const aTime = getTimestamp(a.publishedAt) || getTimestamp(a.date);
+  return bTime - aTime;
+});
 
 export const professionalProjects = [
   {
