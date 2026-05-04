@@ -12,9 +12,9 @@ interface FloatingParticlesProps {
 }
 
 export default function FloatingParticles({
-  count = 500,
+  count = 200,
   color = "#6366f1",
-  size = 0.015,
+  size = 0.02,
   spread = 10,
 }: FloatingParticlesProps) {
   const mesh = useRef<THREE.Points>(null!);
@@ -27,61 +27,45 @@ export default function FloatingParticles({
       pos[i * 3] = (Math.random() - 0.5) * spread;
       pos[i * 3 + 1] = (Math.random() - 0.5) * spread;
       pos[i * 3 + 2] = (Math.random() - 0.5) * spread;
-      vel[i * 3] = (Math.random() - 0.5) * 0.002;
-      vel[i * 3 + 1] = (Math.random() - 0.5) * 0.002;
-      vel[i * 3 + 2] = (Math.random() - 0.5) * 0.002;
+      vel[i * 3] = (Math.random() - 0.5) * 0.12;
+      vel[i * 3 + 1] = (Math.random() - 0.5) * 0.12;
+      vel[i * 3 + 2] = (Math.random() - 0.5) * 0.12;
     }
     return [pos, vel];
   }, [count, spread]);
 
-  const sizes = useMemo(() => {
-    const s = new Float32Array(count);
-    for (let i = 0; i < count; i++) {
-      s[i] = Math.random() * size + size * 0.5;
-    }
-    return s;
-  }, [count, size]);
-
-  useFrame(({ pointer }) => {
+  useFrame(({ pointer }, delta) => {
     if (!mesh.current) return;
-    mouseRef.current.x += (pointer.x * 0.5 - mouseRef.current.x) * 0.02;
-    mouseRef.current.y += (pointer.y * 0.5 - mouseRef.current.y) * 0.02;
+    const dt = Math.min(delta, 0.05);
+
+    mouseRef.current.x += (pointer.x * 0.5 - mouseRef.current.x) * 0.04;
+    mouseRef.current.y += (pointer.y * 0.5 - mouseRef.current.y) * 0.04;
 
     const posArray = mesh.current.geometry.attributes.position
       .array as Float32Array;
+    const half = spread / 2;
+    const mx = mouseRef.current.x * 0.06 * dt;
+    const my = mouseRef.current.y * 0.06 * dt;
 
     for (let i = 0; i < count; i++) {
       const i3 = i * 3;
-      posArray[i3] += velocities[i3];
-      posArray[i3 + 1] += velocities[i3 + 1];
-      posArray[i3 + 2] += velocities[i3 + 2];
+      posArray[i3] += velocities[i3] * dt + mx;
+      posArray[i3 + 1] += velocities[i3 + 1] * dt + my;
+      posArray[i3 + 2] += velocities[i3 + 2] * dt;
 
-      // Mouse influence
-      posArray[i3] += mouseRef.current.x * 0.001;
-      posArray[i3 + 1] += mouseRef.current.y * 0.001;
-
-      // Boundary wrap
-      const half = spread / 2;
       if (Math.abs(posArray[i3]) > half) velocities[i3] *= -1;
       if (Math.abs(posArray[i3 + 1]) > half) velocities[i3 + 1] *= -1;
       if (Math.abs(posArray[i3 + 2]) > half) velocities[i3 + 2] *= -1;
     }
 
     mesh.current.geometry.attributes.position.needsUpdate = true;
-    mesh.current.rotation.y += 0.0003;
+    mesh.current.rotation.y += 0.018 * dt;
   });
 
   return (
     <points ref={mesh}>
       <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          args={[positions, 3]}
-        />
-        <bufferAttribute
-          attach="attributes-size"
-          args={[sizes, 1]}
-        />
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial
         color={color}

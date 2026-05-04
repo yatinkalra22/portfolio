@@ -1,7 +1,12 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useSpring,
+} from "framer-motion";
 import { HiMenu, HiX, HiSun, HiMoon } from "react-icons/hi";
 import { useTheme } from "../ThemeProvider";
 
@@ -20,6 +25,13 @@ export default function NavigationImmersive() {
   const [activeSection, setActiveSection] = useState("home");
   const [mounted, setMounted] = useState(false);
   const { theme, toggleTheme } = useTheme();
+
+  const { scrollYProgress } = useScroll();
+  const progressScaleX = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 22,
+    restDelta: 0.001,
+  });
 
   useEffect(() => {
     setMounted(true);
@@ -208,6 +220,13 @@ export default function NavigationImmersive() {
           </div>
         </div>
       </div>
+
+      {/* Scroll progress rail */}
+      <motion.div
+        aria-hidden
+        style={{ scaleX: progressScaleX, transformOrigin: "0% 50%" }}
+        className="absolute left-0 right-0 bottom-0 h-[2px] bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 dark:from-purple-500 dark:via-pink-500 dark:to-cyan-400 origin-left"
+      />
 
       {/* Mobile menu */}
       <AnimatePresence>

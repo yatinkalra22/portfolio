@@ -1,12 +1,47 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import {
+  motion,
+  useInView,
+  useMotionValue,
+  useTransform,
+  animate,
+} from "framer-motion";
+import { useEffect, useRef } from "react";
 import {
   professionalSummary,
   skills,
   certifications,
 } from "@/lib/data";
+
+function CountUp({
+  value,
+  suffix = "",
+  active,
+}: {
+  value: number;
+  suffix?: string;
+  active: boolean;
+}) {
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.round(latest));
+
+  useEffect(() => {
+    if (!active) return;
+    const controls = animate(count, value, {
+      duration: 1.6,
+      ease: [0.16, 1, 0.3, 1],
+    });
+    return controls.stop;
+  }, [active, value, count]);
+
+  return (
+    <span>
+      <motion.span>{rounded}</motion.span>
+      {suffix}
+    </span>
+  );
+}
 
 export default function AboutSection() {
   const ref = useRef(null);
@@ -30,9 +65,9 @@ export default function AboutSection() {
   };
 
   const stats = [
-    { label: "Years Experience", value: "8+" },
-    { label: "Projects Delivered", value: "10+" },
-    { label: "Hackathon Projects", value: "6" },
+    { label: "Years Experience", value: 8, suffix: "+" },
+    { label: "Projects Delivered", value: 10, suffix: "+" },
+    { label: "Hackathon Projects", value: 11, suffix: "" },
   ];
 
   const skillCategories = Object.entries(skills);
@@ -84,8 +119,12 @@ export default function AboutSection() {
                     key={stat.label}
                     className="text-center p-4 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5"
                   >
-                    <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-cyan-500 dark:from-purple-400 dark:to-cyan-400 bg-clip-text text-transparent">
-                      {stat.value}
+                    <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-cyan-500 dark:from-purple-400 dark:to-cyan-400 bg-clip-text text-transparent tabular-nums">
+                      <CountUp
+                        value={stat.value}
+                        suffix={stat.suffix}
+                        active={isInView}
+                      />
                     </div>
                     <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                       {stat.label}

@@ -35,21 +35,21 @@ export default function HeroText3D({
         ref={meshRef}
         font="/fonts/helvetiker_regular.typeface.json"
         size={size}
-        height={0.15}
-        curveSegments={12}
+        height={0.12}
+        curveSegments={8}
         bevelEnabled
         bevelThickness={0.02}
         bevelSize={0.015}
         bevelOffset={0}
-        bevelSegments={5}
+        bevelSegments={3}
       >
         {text}
         <meshStandardMaterial
           color={color}
           emissive={emissive}
-          emissiveIntensity={0.3}
-          metalness={0.8}
-          roughness={0.2}
+          emissiveIntensity={0.35}
+          metalness={0.6}
+          roughness={0.25}
         />
       </Text3D>
     </Center>

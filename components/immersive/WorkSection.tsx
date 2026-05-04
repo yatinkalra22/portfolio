@@ -1,13 +1,97 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { useState, useRef, useCallback } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useInView,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  useReducedMotion,
+} from "framer-motion";
 import { HiExternalLink } from "react-icons/hi";
 import { FaGithub, FaHeart, FaComment } from "react-icons/fa";
 import { professionalProjects, hackathons } from "@/lib/data";
 
 const tabs = ["Professional", "Hackathons"] as const;
 type Tab = (typeof tabs)[number];
+
+function TiltCard({
+  children,
+  onClick,
+  onKeyDown,
+  className,
+  role,
+  tabIndex,
+}: {
+  children: React.ReactNode;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
+  className?: string;
+  role?: string;
+  tabIndex?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
+
+  const mx = useMotionValue(0.5);
+  const my = useMotionValue(0.5);
+  const sx = useSpring(mx, { stiffness: 180, damping: 20 });
+  const sy = useSpring(my, { stiffness: 180, damping: 20 });
+
+  const rotateX = useTransform(sy, [0, 1], [6, -6]);
+  const rotateY = useTransform(sx, [0, 1], [-6, 6]);
+
+  const spotlight = useTransform([sx, sy], (latest) => {
+    const [x, y] = latest as [number, number];
+    return `radial-gradient(420px circle at ${x * 100}% ${y * 100}%, rgba(99,102,241,0.18), transparent 55%)`;
+  });
+
+  const handleMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (reduced || !ref.current) return;
+      const rect = ref.current.getBoundingClientRect();
+      mx.set((e.clientX - rect.left) / rect.width);
+      my.set((e.clientY - rect.top) / rect.height);
+    },
+    [reduced, mx, my]
+  );
+
+  const handleLeave = useCallback(() => {
+    mx.set(0.5);
+    my.set(0.5);
+  }, [mx, my]);
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMove}
+      onMouseLeave={handleLeave}
+      onClick={onClick}
+      onKeyDown={onKeyDown}
+      role={role}
+      tabIndex={tabIndex}
+      style={{
+        rotateX: reduced ? 0 : rotateX,
+        rotateY: reduced ? 0 : rotateY,
+        transformPerspective: 1000,
+        transformStyle: "preserve-3d",
+      }}
+      whileHover={reduced ? undefined : { y: -6 }}
+      className={className}
+    >
+      {!reduced && (
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-[1] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"
+          style={{ background: spotlight }}
+        />
+      )}
+      {children}
+    </motion.div>
+  );
+}
 
 export default function WorkSection() {
   const [activeTab, setActiveTab] = useState<Tab>("Professional");
@@ -188,10 +272,9 @@ export default function WorkSection() {
                 className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
               >
                 {hackathons.map((hack) => (
-                  <motion.div
+                  <TiltCard
                     key={hack.name}
-                    whileHover={{ y: -6, scale: 1.02 }}
-                    className="group rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 hover:border-indigo-400 dark:hover:border-purple-500/40 transition-all duration-300 cursor-pointer shadow-sm dark:shadow-none"
+                    className="group relative rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 hover:border-indigo-400 dark:hover:border-purple-500/40 transition-colors duration-300 cursor-pointer shadow-sm dark:shadow-none"
                     role={hack.links.devpost ? "link" : undefined}
                     tabIndex={hack.links.devpost ? 0 : undefined}
                     onClick={() => {
@@ -298,7 +381,7 @@ export default function WorkSection() {
                         </div>
                       </div>
                     </div>
-                  </motion.div>
+                  </TiltCard>
                 ))}
               </motion.div>
             )}
