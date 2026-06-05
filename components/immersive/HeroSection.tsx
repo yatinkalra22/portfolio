@@ -19,14 +19,9 @@ import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { useTheme } from "../ThemeProvider";
 
 const roles = [
+  "Senior Software Engineer",
   "DevOps",
-  "DevSecOps",
-  "Automation Tester",
   "Business Analyst",
-  "Full Stack Engineer",
-  "Cloud Architect",
-  "System Designer",
-  "Tech Lead",
 ];
 
 function HeroCanvas({
