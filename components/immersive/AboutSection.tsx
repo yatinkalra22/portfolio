@@ -67,7 +67,7 @@ export default function AboutSection() {
   const stats = [
     { label: "Years Experience", value: 8, suffix: "+" },
     { label: "Projects Delivered", value: 10, suffix: "+" },
-    { label: "Hackathon Projects", value: 11, suffix: "" },
+    { label: "Hackathon Projects", value: 12, suffix: "" },
   ];
 
   const skillCategories = Object.entries(skills);
@@ -79,8 +79,9 @@ export default function AboutSection() {
       className="relative py-24 overflow-hidden bg-gray-50 dark:bg-[#030014] transition-colors"
     >
       {/* Background effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(99,102,241,0.05),transparent_50%)] dark:bg-[radial-gradient(ellipse_at_top_left,rgba(99,102,241,0.1),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(6,182,212,0.04),transparent_50%)] dark:bg-[radial-gradient(ellipse_at_bottom_right,rgba(6,182,212,0.08),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(245,158,11,0.06),transparent_55%)] dark:bg-[radial-gradient(ellipse_at_top_left,rgba(251,191,36,0.10),transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(234,88,12,0.05),transparent_55%)] dark:bg-[radial-gradient(ellipse_at_bottom_right,rgba(244,63,94,0.08),transparent_55%)]" />
+      <div className="grain-overlay" />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -90,14 +91,9 @@ export default function AboutSection() {
         >
           {/* Section header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <span className="text-sm font-mono text-indigo-600 dark:text-cyan-400 tracking-wider uppercase">
-              01 / About
-            </span>
+            <span className="section-eyebrow">01 / About</span>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mt-4 mb-4">
-              Who I{" "}
-              <span className="bg-gradient-to-r from-indigo-600 to-cyan-500 dark:from-purple-400 dark:to-cyan-400 bg-clip-text text-transparent">
-                Am
-              </span>
+              Who I <span className="heading-accent">Am</span>
             </h2>
           </motion.div>
 
@@ -106,7 +102,7 @@ export default function AboutSection() {
             variants={itemVariants}
             className="relative group"
           >
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-cyan-500 dark:from-purple-600 dark:to-cyan-600 rounded-2xl opacity-10 dark:opacity-20 group-hover:opacity-20 dark:group-hover:opacity-30 blur transition-opacity" />
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 dark:from-amber-300 dark:via-orange-400 dark:to-rose-400 rounded-2xl opacity-10 dark:opacity-20 group-hover:opacity-20 dark:group-hover:opacity-35 blur transition-opacity" />
             <div className="relative bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 rounded-2xl p-8 md:p-10">
               <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-8">
                 {professionalSummary}
@@ -119,7 +115,7 @@ export default function AboutSection() {
                     key={stat.label}
                     className="text-center p-4 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5"
                   >
-                    <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-cyan-500 dark:from-purple-400 dark:to-cyan-400 bg-clip-text text-transparent tabular-nums">
+                    <div className="text-3xl md:text-4xl font-bold heading-accent tabular-nums">
                       <CountUp
                         value={stat.value}
                         suffix={stat.suffix}
@@ -137,9 +133,9 @@ export default function AboutSection() {
               {certifications.map((cert) => (
                 <div
                   key={cert.name}
-                  className="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r from-indigo-50 to-cyan-50 dark:from-purple-500/10 dark:to-cyan-500/10 border border-indigo-200/50 dark:border-purple-500/20 mb-6"
+                  className="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-500/10 dark:to-rose-500/10 border border-amber-200/50 dark:border-amber-500/20 mb-6"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 dark:from-purple-500 dark:to-cyan-500 flex items-center justify-center text-white font-bold text-sm">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-orange-500 dark:from-amber-400 dark:to-rose-400 flex items-center justify-center text-[#1a0f00] font-bold text-sm">
                     AWS
                   </div>
                   <div>
@@ -156,10 +152,7 @@ export default function AboutSection() {
           {/* Skills Grid */}
           <motion.div variants={itemVariants} className="mt-12">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-              Technical{" "}
-              <span className="bg-gradient-to-r from-indigo-600 to-cyan-500 dark:from-purple-400 dark:to-cyan-400 bg-clip-text text-transparent">
-                Arsenal
-              </span>
+              Technical <span className="heading-accent">Arsenal</span>
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {skillCategories.map(([category, skillList], idx) => (
@@ -169,27 +162,27 @@ export default function AboutSection() {
                   whileHover={{ y: -4, scale: 1.02 }}
                   className="group relative"
                 >
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500/30 to-cyan-500/30 dark:from-purple-600/40 dark:to-cyan-600/40 rounded-xl opacity-0 group-hover:opacity-100 blur transition-opacity" />
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-400/30 via-orange-500/30 to-rose-500/30 dark:from-amber-300/30 dark:via-orange-400/30 dark:to-rose-400/30 rounded-xl opacity-0 group-hover:opacity-100 blur transition-opacity" />
                   <div className="relative bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 rounded-xl p-6 h-full">
                     <div className="flex items-center gap-3 mb-4">
                       <div
-                        className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-white"
+                        className="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold text-[#1a0f00]"
                         style={{
                           background: `linear-gradient(135deg, ${
                             [
-                              "#6366f1",
-                              "#8b5cf6",
-                              "#06b6d4",
-                              "#10b981",
+                              "#fbbf24",
                               "#f59e0b",
+                              "#fb923c",
+                              "#f97316",
+                              "#f43f5e",
                             ][idx % 5]
                           }, ${
                             [
-                              "#8b5cf6",
-                              "#06b6d4",
-                              "#10b981",
                               "#f59e0b",
-                              "#ef4444",
+                              "#fb923c",
+                              "#f97316",
+                              "#ea580c",
+                              "#b91c1c",
                             ][idx % 5]
                           })`,
                         }}
@@ -202,7 +195,7 @@ export default function AboutSection() {
                       {skillList.map((skill) => (
                         <span
                           key={skill}
-                          className="px-3 py-1 text-xs font-medium rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:border-indigo-400 dark:hover:border-purple-500/50 hover:text-indigo-600 dark:hover:text-white transition-all"
+                          className="px-3 py-1 text-xs font-medium rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:border-amber-400 dark:hover:border-amber-400/50 hover:text-amber-700 dark:hover:text-amber-200 transition-all"
                         >
                           {skill}
                         </span>

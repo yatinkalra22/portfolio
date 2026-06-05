@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { Text3D, Center } from "@react-three/drei";
 import * as THREE from "three";
 
@@ -21,6 +21,16 @@ export default function HeroText3D({
   size = 0.8,
 }: HeroText3DProps) {
   const meshRef = useRef<THREE.Mesh>(null!);
+  const { viewport } = useThree();
+
+  // Scale text down on narrow viewports so it never overflows.
+  // helvetiker at size=s is roughly s * 0.6 wide per glyph including kerning,
+  // so reserve ~text.length * 0.65 * size and keep 12% horizontal padding.
+  const approxWidth = text.length * size * 0.65;
+  const maxWidth = viewport.width * 0.88;
+  const responsiveSize =
+    approxWidth > maxWidth ? size * (maxWidth / approxWidth) : size;
+  const bevelScale = responsiveSize / size;
 
   useFrame(({ clock, pointer }) => {
     if (!meshRef.current) return;
@@ -34,12 +44,12 @@ export default function HeroText3D({
       <Text3D
         ref={meshRef}
         font="/fonts/helvetiker_regular.typeface.json"
-        size={size}
-        height={0.12}
+        size={responsiveSize}
+        height={0.12 * bevelScale}
         curveSegments={8}
         bevelEnabled
-        bevelThickness={0.02}
-        bevelSize={0.015}
+        bevelThickness={0.02 * bevelScale}
+        bevelSize={0.015 * bevelScale}
         bevelOffset={0}
         bevelSegments={3}
       >

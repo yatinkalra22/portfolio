@@ -33,7 +33,9 @@ export default function EducationSection() {
       className="relative py-24 overflow-hidden bg-white dark:bg-[#030014] transition-colors"
     >
       {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(168,85,247,0.04),transparent_50%)] dark:bg-[radial-gradient(ellipse_at_bottom_left,rgba(168,85,247,0.08),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(245,158,11,0.05),transparent_55%)] dark:bg-[radial-gradient(ellipse_at_bottom_left,rgba(251,191,36,0.09),transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(244,63,94,0.04),transparent_55%)] dark:bg-[radial-gradient(ellipse_at_top_right,rgba(244,63,94,0.07),transparent_55%)]" />
+      <div className="grain-overlay" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -43,14 +45,9 @@ export default function EducationSection() {
         >
           {/* Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <span className="text-sm font-mono text-indigo-600 dark:text-cyan-400 tracking-wider uppercase">
-              04 / Education
-            </span>
+            <span className="section-eyebrow">04 / Education</span>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mt-4">
-              Education &{" "}
-              <span className="bg-gradient-to-r from-indigo-600 to-cyan-500 dark:from-purple-400 dark:to-cyan-400 bg-clip-text text-transparent">
-                Credentials
-              </span>
+              Education & <span className="heading-accent">Credentials</span>
             </h2>
           </motion.div>
 
@@ -58,23 +55,23 @@ export default function EducationSection() {
             {/* Education Timeline */}
             <motion.div variants={itemVariants}>
               <div className="flex items-center gap-2 mb-8">
-                <HiAcademicCap className="w-5 h-5 text-indigo-600 dark:text-cyan-400" />
+                <HiAcademicCap className="w-5 h-5 text-amber-600 dark:text-amber-300" />
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Education</h3>
               </div>
-              <div className="relative pl-8 border-l-2 border-indigo-200 dark:border-purple-500/30 space-y-10">
+              <div className="relative pl-8 border-l-2 border-amber-200 dark:border-amber-400/25 space-y-10">
                 {education.map((edu, index) => (
                   <motion.div
                     key={index}
                     variants={itemVariants}
                     className="relative group"
                   >
-                    <div className="absolute -left-[25px] top-1 w-3 h-3 bg-gradient-to-r from-indigo-500 to-cyan-500 dark:from-purple-500 dark:to-cyan-500 rounded-full ring-4 ring-indigo-100 dark:ring-purple-500/20" />
+                    <div className="absolute -left-[25px] top-1 w-3 h-3 bg-gradient-to-r from-amber-400 to-orange-500 dark:from-amber-300 dark:to-rose-400 rounded-full ring-4 ring-amber-100 dark:ring-amber-500/20" />
 
-                    <div className="p-4 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200/50 dark:border-white/10 group-hover:border-indigo-300 dark:group-hover:border-purple-500/30 transition-all">
+                    <div className="p-4 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200/50 dark:border-white/10 group-hover:border-amber-300 dark:group-hover:border-amber-400/30 transition-all">
                       <h3 className="text-lg font-bold text-gray-900 dark:text-white">
                         {edu.degree}
                       </h3>
-                      <p className="text-indigo-600 dark:text-cyan-400 font-medium">
+                      <p className="text-amber-600 dark:text-amber-300 font-medium">
                         {edu.institution}
                       </p>
                       <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
@@ -121,10 +118,10 @@ export default function EducationSection() {
                 whileHover={{ y: -4 }}
                 className="group relative"
               >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500/20 to-pink-500/20 dark:from-purple-600/30 dark:to-pink-600/30 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity" />
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-400/25 via-orange-500/25 to-rose-500/25 dark:from-amber-300/30 dark:via-orange-400/30 dark:to-rose-400/30 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity" />
                 <div className="relative p-6 rounded-2xl bg-gray-50 dark:bg-white/5 backdrop-blur-xl border border-gray-200/50 dark:border-white/10">
                   <div className="flex items-center gap-2 mb-5">
-                    <HiStar className="w-5 h-5 text-indigo-500 dark:text-purple-400" />
+                    <HiStar className="w-5 h-5 text-amber-500 dark:text-amber-300" />
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                       Leadership
                     </h3>
@@ -135,7 +132,7 @@ export default function EducationSection() {
                         key={index}
                         className="flex items-start gap-3 text-gray-600 dark:text-gray-300"
                       >
-                        <span className="flex-shrink-0 w-1.5 h-1.5 bg-gradient-to-r from-indigo-400 to-cyan-400 dark:from-purple-400 dark:to-cyan-400 rounded-full mt-2" />
+                        <span className="flex-shrink-0 w-1.5 h-1.5 bg-gradient-to-r from-amber-400 to-orange-500 dark:from-amber-300 dark:to-rose-400 rounded-full mt-2" />
                         <span>{achievement}</span>
                       </li>
                     ))}

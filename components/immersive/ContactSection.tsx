@@ -67,8 +67,9 @@ export default function ContactSection() {
       className="relative py-24 overflow-hidden bg-gray-50 dark:bg-[#030014] transition-colors"
     >
       {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.05),transparent_50%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.1),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(6,182,212,0.04),transparent_50%)] dark:bg-[radial-gradient(ellipse_at_bottom,rgba(6,182,212,0.08),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(245,158,11,0.06),transparent_55%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(251,191,36,0.10),transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(234,88,12,0.04),transparent_55%)] dark:bg-[radial-gradient(ellipse_at_bottom,rgba(244,63,94,0.08),transparent_55%)]" />
+      <div className="grain-overlay" />
 
       <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -78,14 +79,9 @@ export default function ContactSection() {
         >
           {/* Header */}
           <motion.div variants={itemVariants} className="text-center mb-12">
-            <span className="text-sm font-mono text-indigo-600 dark:text-cyan-400 tracking-wider uppercase">
-              05 / Contact
-            </span>
+            <span className="section-eyebrow">05 / Contact</span>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mt-4 mb-4">
-              Let&apos;s Work{" "}
-              <span className="bg-gradient-to-r from-indigo-600 to-cyan-500 dark:from-purple-400 dark:to-cyan-400 bg-clip-text text-transparent">
-                Together
-              </span>
+              Let&apos;s Work <span className="heading-accent">Together</span>
             </h2>
             <p className="text-lg text-gray-500 dark:text-gray-400 max-w-xl mx-auto leading-relaxed">
               I&apos;m always open to discussing new opportunities,
@@ -95,7 +91,7 @@ export default function ContactSection() {
 
           {/* Terminal Card */}
           <motion.div variants={itemVariants} className="group relative mb-10">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-cyan-500 dark:from-purple-600 dark:to-cyan-600 rounded-2xl opacity-10 dark:opacity-20 group-hover:opacity-20 dark:group-hover:opacity-30 blur transition-opacity" />
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 dark:from-amber-300 dark:via-orange-400 dark:to-rose-400 rounded-2xl opacity-15 dark:opacity-25 group-hover:opacity-30 dark:group-hover:opacity-40 blur transition-opacity" />
             <div className="relative bg-[#1a1a2e] dark:bg-[#0a0a1a] border border-gray-700/50 dark:border-white/10 rounded-2xl overflow-hidden">
               {/* Terminal Header */}
               <div className="flex items-center gap-2 px-4 py-3 border-b border-gray-700/50 dark:border-white/10 bg-gray-800/50 dark:bg-white/5">
@@ -184,10 +180,10 @@ export default function ContactSection() {
           <motion.div variants={itemVariants} className="text-center mb-10">
             <a
               href={`mailto:${personalInfo.email}`}
-              className="group inline-flex items-center gap-3 px-8 py-4 rounded-full font-medium text-white overflow-hidden relative hover:scale-105 transition-all"
+              className="group inline-flex items-center gap-3 px-8 py-4 rounded-full font-medium text-[#1a0f00] overflow-hidden relative hover:scale-105 transition-all"
             >
-              <span className="absolute inset-0 bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-600" />
-              <span className="absolute inset-0 bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-600 blur-xl opacity-50 group-hover:opacity-80 transition-opacity" />
+              <span className="absolute inset-0 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500" />
+              <span className="absolute inset-0 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 blur-xl opacity-50 group-hover:opacity-80 transition-opacity" />
               <span className="relative flex items-center gap-3">
                 <HiMail className="w-5 h-5" />
                 {personalInfo.email}
@@ -217,7 +213,7 @@ export default function ContactSection() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-cyan-400 hover:border-indigo-300 dark:hover:border-cyan-500/50 hover:bg-gray-200 dark:hover:bg-white/10 transition-all"
+                className="p-3 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 hover:text-amber-600 dark:hover:text-amber-300 hover:border-amber-300 dark:hover:border-amber-400/50 hover:bg-gray-200 dark:hover:bg-white/10 transition-all"
                 aria-label={link.label}
               >
                 {link.icon}
@@ -232,7 +228,7 @@ export default function ContactSection() {
           >
             <a
               href={`tel:${personalInfo.phone}`}
-              className="flex items-center gap-2 hover:text-indigo-600 dark:hover:text-cyan-400 transition-colors"
+              className="flex items-center gap-2 hover:text-amber-600 dark:hover:text-amber-300 transition-colors"
             >
               <HiPhone className="w-4 h-4" />
               {personalInfo.phone}

@@ -15,7 +15,7 @@ export default function FooterSection() {
             href={personalInfo.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-indigo-600 dark:hover:text-cyan-400 transition-colors"
+            className="text-gray-400 hover:text-amber-600 dark:hover:text-amber-300 transition-colors"
             aria-label="LinkedIn"
           >
             <FaLinkedin className="w-4 h-4" />
@@ -24,7 +24,7 @@ export default function FooterSection() {
             href={personalInfo.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-indigo-600 dark:hover:text-cyan-400 transition-colors"
+            className="text-gray-400 hover:text-amber-600 dark:hover:text-amber-300 transition-colors"
             aria-label="GitHub"
           >
             <FaGithub className="w-4 h-4" />

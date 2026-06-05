@@ -89,7 +89,7 @@ export default function NavigationImmersive() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? isDark
-            ? "bg-[#030014]/80 backdrop-blur-2xl shadow-lg shadow-purple-500/5 border-b border-white/5"
+            ? "bg-[#030014]/80 backdrop-blur-2xl shadow-lg shadow-amber-500/5 border-b border-white/5"
             : "bg-white/80 backdrop-blur-2xl shadow-lg shadow-black/5 border-b border-gray-200/50"
           : "bg-transparent"
       }`}
@@ -108,9 +108,18 @@ export default function NavigationImmersive() {
                 e.preventDefault();
                 handleNavClick("#home");
               }}
-              className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-cyan-500 dark:from-purple-400 dark:to-cyan-400 bg-clip-text text-transparent hover:scale-105 transition-transform"
+              className="group inline-flex items-baseline gap-1 font-mono text-[15px] tracking-tight text-gray-900 dark:text-white hover:opacity-90 transition-opacity"
+              aria-label="Yatin Kalra — Home"
             >
-              YK
+              <span className="font-semibold">yk</span>
+              <span className="text-amber-500 dark:text-amber-400">/</span>
+              <span className="text-gray-400 dark:text-gray-500 font-normal hidden sm:inline">
+                portfolio
+              </span>
+              <span
+                aria-hidden
+                className="ml-1 inline-block w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 translate-y-[-1px] motion-safe:animate-pulse"
+              />
             </a>
           </motion.div>
 
@@ -129,17 +138,20 @@ export default function NavigationImmersive() {
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * index }}
-                  className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  className={`relative px-3 py-2 text-sm font-medium transition-colors duration-300 ${
                     isActive
-                      ? "text-indigo-600 dark:text-cyan-300"
+                      ? "text-gray-900 dark:text-white"
                       : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                   }`}
                 >
+                  <span className="font-mono text-[10px] text-amber-500 dark:text-amber-400 mr-1.5 align-text-top tabular-nums">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                   {item.name}
                   {isActive && (
                     <motion.div
                       layoutId="activeNavImmersive"
-                      className="absolute inset-0 bg-indigo-50 dark:bg-white/5 border border-indigo-200/50 dark:border-white/10 rounded-full -z-10"
+                      className="absolute left-3 right-3 -bottom-0.5 h-[2px] bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 dark:from-amber-300 dark:via-orange-400 dark:to-rose-400 rounded-full"
                       transition={{
                         type: "spring",
                         stiffness: 380,
@@ -180,7 +192,7 @@ export default function NavigationImmersive() {
                       exit={{ rotate: -90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <HiMoon className="w-4 h-4 text-indigo-600" />
+                      <HiMoon className="w-4 h-4 text-slate-700" />
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -200,7 +212,7 @@ export default function NavigationImmersive() {
                   {isDark ? (
                     <HiSun className="w-4 h-4 text-amber-400" />
                   ) : (
-                    <HiMoon className="w-4 h-4 text-indigo-600" />
+                    <HiMoon className="w-4 h-4 text-slate-700" />
                   )}
                 </>
               )}
@@ -225,7 +237,7 @@ export default function NavigationImmersive() {
       <motion.div
         aria-hidden
         style={{ scaleX: progressScaleX, transformOrigin: "0% 50%" }}
-        className="absolute left-0 right-0 bottom-0 h-[2px] bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 dark:from-purple-500 dark:via-pink-500 dark:to-cyan-400 origin-left"
+        className="absolute left-0 right-0 bottom-0 h-[2px] bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 dark:from-amber-300 dark:via-orange-400 dark:to-rose-400 origin-left"
       />
 
       {/* Mobile menu */}
@@ -251,12 +263,15 @@ export default function NavigationImmersive() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.05 * index }}
-                    className={`block px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                    className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
                       isActive
-                        ? "text-indigo-600 dark:text-cyan-300 bg-indigo-50 dark:bg-white/5"
-                        : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                        ? "text-gray-900 dark:text-white bg-amber-50 dark:bg-amber-500/10 border-l-2 border-amber-500 dark:border-amber-400"
+                        : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white border-l-2 border-transparent"
                     }`}
                   >
+                    <span className="font-mono text-[10px] text-amber-500 dark:text-amber-400 tabular-nums">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
                     {item.name}
                   </motion.a>
                 );

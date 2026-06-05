@@ -58,16 +58,16 @@ export default function LoadingScreen() {
         >
           {/* Grid background */}
           <div
-            className="absolute inset-0 opacity-[0.03]"
+            className="absolute inset-0 opacity-[0.035]"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(99,102,241,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.5) 1px, transparent 1px)",
+                "linear-gradient(rgba(251,191,36,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(251,191,36,0.6) 1px, transparent 1px)",
               backgroundSize: "40px 40px",
             }}
           />
 
           {/* Radial glow */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.08),transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(251,146,60,0.10),transparent_60%)]" />
 
           {/* Orbiting ring */}
           <div className="relative mb-12">
@@ -75,20 +75,20 @@ export default function LoadingScreen() {
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              className="w-28 h-28 rounded-full border border-purple-500/20"
+              className="w-28 h-28 rounded-full border border-amber-400/20"
               style={{
-                borderTopColor: "rgba(99, 102, 241, 0.6)",
-                borderRightColor: "rgba(6, 182, 212, 0.4)",
+                borderTopColor: "rgba(251, 191, 36, 0.7)",
+                borderRightColor: "rgba(251, 146, 60, 0.5)",
               }}
             />
             {/* Inner counter-rotating ring */}
             <motion.div
               animate={{ rotate: -360 }}
               transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-3 rounded-full border border-cyan-500/20"
+              className="absolute inset-3 rounded-full border border-orange-500/20"
               style={{
-                borderBottomColor: "rgba(6, 182, 212, 0.6)",
-                borderLeftColor: "rgba(168, 85, 247, 0.4)",
+                borderBottomColor: "rgba(251, 146, 60, 0.7)",
+                borderLeftColor: "rgba(244, 63, 94, 0.5)",
               }}
             />
             {/* Center logo */}
@@ -97,7 +97,7 @@ export default function LoadingScreen() {
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent"
+                className="text-3xl font-bold bg-gradient-to-r from-amber-300 via-orange-400 to-rose-400 bg-clip-text text-transparent"
               >
                 YK
               </motion.div>
@@ -106,7 +106,7 @@ export default function LoadingScreen() {
             <motion.div
               animate={{ opacity: [0.2, 0.5, 0.2], scale: [0.95, 1.05, 0.95] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="absolute inset-0 rounded-full bg-purple-500/10 blur-xl"
+              className="absolute inset-0 rounded-full bg-amber-500/10 blur-xl"
             />
           </div>
 
@@ -117,7 +117,7 @@ export default function LoadingScreen() {
                 className="h-full rounded-full relative"
                 style={{
                   background:
-                    "linear-gradient(90deg, #6366f1, #06b6d4, #a855f7)",
+                    "linear-gradient(90deg, #fbbf24, #fb923c, #f43f5e)",
                 }}
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
@@ -129,8 +129,8 @@ export default function LoadingScreen() {
               className="absolute top-0 h-4 blur-md rounded-full -mt-1"
               style={{
                 background:
-                  "linear-gradient(90deg, #6366f1, #06b6d4)",
-                opacity: 0.4,
+                  "linear-gradient(90deg, #fbbf24, #fb923c)",
+                opacity: 0.45,
               }}
               initial={{ width: 0 }}
               animate={{ width: `${progress}%` }}
@@ -145,7 +145,7 @@ export default function LoadingScreen() {
             transition={{ delay: 0.3 }}
             className="mt-6 flex items-center gap-3"
           >
-            <span className="text-2xl font-mono font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="text-2xl font-mono font-bold bg-gradient-to-r from-amber-300 via-orange-400 to-rose-400 bg-clip-text text-transparent">
               {Math.round(progress)}%
             </span>
           </motion.div>
@@ -160,7 +160,7 @@ export default function LoadingScreen() {
             <motion.span
               animate={{ opacity: [1, 0, 1] }}
               transition={{ duration: 0.8, repeat: Infinity }}
-              className="text-cyan-400"
+              className="text-amber-400"
             >
               &gt;
             </motion.span>
@@ -178,10 +178,10 @@ export default function LoadingScreen() {
           </motion.div>
 
           {/* Corner decorations */}
-          <div className="absolute top-8 left-8 w-16 h-16 border-l border-t border-purple-500/20" />
-          <div className="absolute top-8 right-8 w-16 h-16 border-r border-t border-cyan-500/20" />
-          <div className="absolute bottom-8 left-8 w-16 h-16 border-l border-b border-cyan-500/20" />
-          <div className="absolute bottom-8 right-8 w-16 h-16 border-r border-b border-purple-500/20" />
+          <div className="absolute top-8 left-8 w-16 h-16 border-l border-t border-amber-400/25" />
+          <div className="absolute top-8 right-8 w-16 h-16 border-r border-t border-orange-500/25" />
+          <div className="absolute bottom-8 left-8 w-16 h-16 border-l border-b border-orange-500/25" />
+          <div className="absolute bottom-8 right-8 w-16 h-16 border-r border-b border-rose-500/25" />
         </motion.div>
       )}
     </AnimatePresence>

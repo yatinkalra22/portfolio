@@ -143,6 +143,44 @@ export const achievements = [
 
 export const hackathons = [
   {
+    name: "ProofVault-ZK",
+    hackathon: "Midnight Hackathon",
+    date: "May 17, 2026",
+    publishedAt: "2026-05-17T12:00:00-05:00",
+    description:
+      "Prove your funds. Reveal nothing. A zero-knowledge proof-of-funds credential for students applying to visas, universities, and housing — built on Midnight Network with a 30-second end-to-end flow.",
+    techStack: [
+      "TypeScript",
+      "Next.js",
+      "NestJS",
+      "Midnight Network",
+      "Compact",
+      "Zero-Knowledge Proofs",
+      "Lace Wallet",
+      "Plaid",
+      "Ed25519",
+      "Fastify",
+      "Turborepo",
+      "Tailwind CSS",
+      "Vitest",
+      "Docker",
+    ],
+    highlights: [
+      "Tiered balance proofs ($30K / $50K / $80K) without revealing accounts or transactions",
+      "ZK circuit binds proofs to specific universities with built-in expiration",
+      "30-second flow: tier → recipient → wallet → Plaid link → proof",
+      "Wallet-free verifier portal so universities can confirm proofs instantly",
+    ],
+    links: {
+      demo: "",
+      github: "https://github.com/yatinkalra22/proofvault-zk",
+      devpost: "https://devpost.com/software/proofvault-zk",
+    },
+    team: ["Yash Baing", "Holly Andrews"],
+    likes: 2,
+    comments: 0,
+  },
+  {
     name: "NexusTower",
     hackathon: "Synapse Innovation Hack",
     date: "May 3, 2026",

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://yatinkalra22-portfolio.vercel.app"),
   title: "Yatin Kalra — Senior Full Stack Engineer & Cloud Architect",
   description:
-    "Portfolio of Yatin Rajkumar Kalra — Senior Full Stack Engineer with 8+ years architecting React, Node.js, and AWS systems across fintech, healthcare, and SaaS. 11 hackathon projects and counting.",
+    "Portfolio of Yatin Rajkumar Kalra — Senior Full Stack Engineer with 8+ years architecting React, Node.js, and AWS systems across fintech, healthcare, and SaaS. 12 hackathon projects and counting.",
   keywords: [
     "Full Stack Engineer",
     "React",
@@ -62,6 +62,8 @@ export const viewport: Viewport = {
     { media: "(prefers-color-scheme: light)", color: "#faf9ff" },
     { media: "(prefers-color-scheme: dark)", color: "#030014" },
   ],
+  width: "device-width",
+  initialScale: 1,
 };
 
 const personJsonLd = {

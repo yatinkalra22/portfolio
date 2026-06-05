@@ -45,7 +45,7 @@ function TiltCard({
 
   const spotlight = useTransform([sx, sy], (latest) => {
     const [x, y] = latest as [number, number];
-    return `radial-gradient(420px circle at ${x * 100}% ${y * 100}%, rgba(99,102,241,0.18), transparent 55%)`;
+    return `radial-gradient(420px circle at ${x * 100}% ${y * 100}%, rgba(251,146,60,0.22), transparent 55%)`;
   });
 
   const handleMove = useCallback(
@@ -122,8 +122,9 @@ export default function WorkSection() {
       className="relative py-24 overflow-hidden bg-gray-50 dark:bg-[#030014] transition-colors"
     >
       {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(6,182,212,0.04),transparent_50%)] dark:bg-[radial-gradient(ellipse_at_top_right,rgba(6,182,212,0.08),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(99,102,241,0.03),transparent_50%)] dark:bg-[radial-gradient(ellipse_at_bottom_left,rgba(99,102,241,0.06),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(251,146,60,0.05),transparent_55%)] dark:bg-[radial-gradient(ellipse_at_top_right,rgba(251,146,60,0.10),transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(245,158,11,0.04),transparent_55%)] dark:bg-[radial-gradient(ellipse_at_bottom_left,rgba(244,63,94,0.08),transparent_55%)]" />
+      <div className="grain-overlay" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -133,14 +134,9 @@ export default function WorkSection() {
         >
           {/* Header */}
           <motion.div variants={itemVariants} className="text-center mb-12">
-            <span className="text-sm font-mono text-indigo-600 dark:text-cyan-400 tracking-wider uppercase">
-              03 / Work
-            </span>
+            <span className="section-eyebrow">03 / Work</span>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mt-4">
-              Selected{" "}
-              <span className="bg-gradient-to-r from-indigo-600 to-cyan-500 dark:from-purple-400 dark:to-cyan-400 bg-clip-text text-transparent">
-                Projects
-              </span>
+              Selected <span className="heading-accent">Projects</span>
             </h2>
           </motion.div>
 
@@ -163,7 +159,7 @@ export default function WorkSection() {
                   {activeTab === tab && (
                     <motion.div
                       layoutId="activeWorkTab"
-                      className="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-500 dark:from-purple-600 dark:to-cyan-600"
+                      className="absolute inset-0 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 dark:from-amber-400 dark:via-orange-400 dark:to-rose-400"
                       transition={{
                         type: "spring",
                         stiffness: 380,
@@ -182,7 +178,7 @@ export default function WorkSection() {
             {activeTab === "Professional" ? (
               <button
                 onClick={() => setActiveTab("Hackathons")}
-                className="text-sm font-medium text-indigo-600 dark:text-cyan-400 hover:text-indigo-500 dark:hover:text-cyan-300 transition-colors"
+                className="text-sm font-medium text-amber-600 dark:text-amber-300 hover:text-amber-500 dark:hover:text-amber-200 transition-colors"
               >
                 View latest hackathon projects &rarr;
               </button>
@@ -219,10 +215,10 @@ export default function WorkSection() {
                           whileHover={{ y: -6, scale: 1.02 }}
                           className="group relative"
                         >
-                          <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500/20 to-cyan-500/20 dark:from-purple-600/30 dark:to-cyan-600/30 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity" />
-                          <div className="relative p-6 rounded-2xl bg-white dark:bg-white/5 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 hover:border-indigo-300 dark:hover:border-purple-500/30 transition-all h-full shadow-sm dark:shadow-none">
+                          <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-400/25 via-orange-500/25 to-rose-500/25 dark:from-amber-300/30 dark:via-orange-400/30 dark:to-rose-400/30 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-opacity" />
+                          <div className="relative p-6 rounded-2xl bg-white dark:bg-white/5 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 hover:border-amber-300 dark:hover:border-amber-400/30 transition-all h-full shadow-sm dark:shadow-none">
                             <div className="flex items-start justify-between mb-3">
-                              <h4 className="text-base font-bold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-cyan-400 transition-colors">
+                              <h4 className="text-base font-bold text-gray-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors">
                                 {project.name}
                               </h4>
                               {project.url && (
@@ -230,7 +226,7 @@ export default function WorkSection() {
                                   href={project.url}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-gray-400 dark:text-gray-500 hover:text-indigo-600 dark:hover:text-cyan-400 transition-colors flex-shrink-0 ml-2"
+                                  className="text-gray-400 dark:text-gray-500 hover:text-amber-600 dark:hover:text-amber-300 transition-colors flex-shrink-0 ml-2"
                                   aria-label={`Visit ${project.name}`}
                                 >
                                   <HiExternalLink className="w-4 h-4" />
@@ -274,7 +270,7 @@ export default function WorkSection() {
                 {hackathons.map((hack) => (
                   <TiltCard
                     key={hack.name}
-                    className="group relative rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 hover:border-indigo-400 dark:hover:border-purple-500/40 transition-colors duration-300 cursor-pointer shadow-sm dark:shadow-none"
+                    className="group relative rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 hover:border-amber-400 dark:hover:border-amber-400/40 transition-colors duration-300 cursor-pointer shadow-sm dark:shadow-none"
                     role={hack.links.devpost ? "link" : undefined}
                     tabIndex={hack.links.devpost ? 0 : undefined}
                     onClick={() => {
@@ -299,12 +295,13 @@ export default function WorkSection() {
                     }}
                   >
                     {/* Gradient Header */}
-                    <div className="p-5 relative overflow-hidden bg-gradient-to-r from-indigo-600 to-cyan-500 dark:from-purple-600 dark:to-cyan-600">
-                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.15),transparent_50%)]" />
-                      <p className="text-xs text-white/70 mb-1.5 font-mono relative">
+                    <div className="p-5 relative overflow-hidden bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 dark:from-amber-400 dark:via-orange-500 dark:to-rose-500">
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.18),transparent_55%)]" />
+                      <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(0,0,0,0.18))]" />
+                      <p className="text-[11px] text-[#1a0f00]/75 dark:text-[#1a0f00]/80 mb-1.5 font-mono tracking-wider uppercase relative">
                         {hack.hackathon} &middot; {hack.date}
                       </p>
-                      <h4 className="text-lg font-bold text-white relative leading-tight">
+                      <h4 className="text-lg font-bold text-[#1a0f00] relative leading-tight">
                         {hack.name}
                       </h4>
                     </div>
@@ -320,7 +317,7 @@ export default function WorkSection() {
                         {hack.techStack.slice(0, 5).map((tech) => (
                           <span
                             key={tech}
-                            className="px-2.5 py-1 text-xs font-medium rounded-lg bg-indigo-50 dark:bg-purple-500/10 border border-indigo-200/50 dark:border-purple-500/20 text-indigo-600 dark:text-purple-300"
+                            className="px-2.5 py-1 text-xs font-medium rounded-lg bg-amber-50 dark:bg-amber-500/10 border border-amber-200/60 dark:border-amber-500/25 text-amber-700 dark:text-amber-200"
                           >
                             {tech}
                           </span>
@@ -340,7 +337,7 @@ export default function WorkSection() {
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
-                            className="text-indigo-600 dark:text-cyan-400 hover:text-indigo-500 dark:hover:text-cyan-300 font-medium transition-colors"
+                            className="text-amber-600 dark:text-amber-300 hover:text-amber-500 dark:hover:text-amber-200 font-medium transition-colors"
                           >
                             Demo
                           </a>
@@ -363,7 +360,7 @@ export default function WorkSection() {
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
-                            className="text-indigo-600 dark:text-cyan-400 hover:text-indigo-500 dark:hover:text-cyan-300 text-xs font-medium transition-colors"
+                            className="text-amber-600 dark:text-amber-300 hover:text-amber-500 dark:hover:text-amber-200 text-xs font-medium transition-colors"
                           >
                             Devpost
                           </a>
